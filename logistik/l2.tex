@@ -1,1 +1,67 @@
 \section{Scheduling}
+
+\textbf{Was ist Scheduling?}
+\begin{itemize}
+	\item Zuordnung von Aufträgen (\textbf{Jobs}) zu Arbeitsträgern, z.B. Maschinen, unter Beachtung von Nebenbedingungen zum Optimieren einer oder mehrerer Zielgrößen
+\end{itemize}
+\bigskip
+\textbf{Scheduling Notation:}
+\begin{itemize}
+	\item $n$ \textbf{Jobs} müssen auf $m$ \textbf{Maschinen} bearbeitet werden
+	\item Job $j$ hat auf Maschine $i$ eine \textbf{Prozesszeit} $p_{ij}$
+	\item Job $j$ kann ein \textbf{Gewicht} $w_j$ haben $\rightarrow$ Repräsentiert die Wichtigkeit des Jobs
+	\item Job $j$ kann einen \textbf{Liefertermin} $d_j$ haben
+	\item Notation eines \textbf{Scheduling-Problems}: $\alpha\mid\beta\mid\gamma$
+	\begin{itemize}
+		\item $\alpha$: Maschinenumgebung
+		\item $\beta$: Auftragscharakteristik und Beschränkungen
+		\item $\gamma$: Zielgröße
+	\end{itemize}
+\end{itemize}
+\bigskip
+\textbf{Performanz-Kenngrößen:}
+\begin{itemize}
+	\item \textbf{Fertigstellungszeitpunkt (Completion Time) $\boldsymbol{C_j}$}:
+	\begin{itemize}
+		 \item Zeitpunkt, zu welchem Job $j$ fertiggestellt ist
+		 \item Bei mehreren Maschinen $C_{ij}$ (Fertigstellung von Job $j$ auf Maschine $i$) gilt: $C_j=\max\limits_{i\in I}\{C_{ij}\}$
+	\end{itemize}  
+	\item \textbf{Unpünktlichkeit (Lateness)} $L_j=C_j-d_j$ beschreibt die Abweichung vom Fertigstellungszeitpunkt zum Liefertermin. Negativ, wenn Produkt zu früh fertig
+	\item \textbf{Verspätung (Tardiness)} $T_j=\max\{C_j-d_j,0\}$ wie Lateness, aber erlaubt keine negativen Werte
+	\item \textbf{Einheits-Strafe (Unit penalty)}  
+	$U_j=
+	\begin{cases}
+		1\;, & \text{wenn } C_j > d_j\\
+		0\;, & \text{sonst}
+	\end{cases}$
+	\newline
+	\newline
+	erhebt eine Einheitsstrafe, wenn Fertigstellungszeitpunkt zu spät
+\end{itemize}
+\bigskip
+\textbf{Maschinenumgebung $\boldsymbol{(\alpha)}$:}
+\begin{itemize}
+	\item \textbf{Einzel Maschine} $\boldsymbol{(1)}$
+	\item \textbf{Parallele Maschinen $\boldsymbol{(Pm, Qm, Rm)}$:}
+	\begin{itemize}
+		\item Mehrere Maschinen, die gleichzeitig Jobs abarbeiten
+		\item $Pm$: $m$ identische Maschinen (gleiche Geschwindigkeit)
+		\item $Qm$: $m$ Maschinen mit unterschiedl., job-unspezifischen Geschwindigkeiten
+		\item $Rm$: $m$ Maschinen mit unterschiedl., job-spezifischen Geschwindigkeiten
+	\end{itemize}
+	\item \textbf{Flow-Shop $\boldsymbol{(Fm)}$}: $m$ Maschinen in Serie, alle Jobs müssen diese durchlaufen (selbe Maschinen-Reihenfolge)
+	\item \textbf{Job-Shop $\boldsymbol{(Jm)}$}: $m$ Maschinen, alle Jobs müssen diese durchlaufen, haben jedoch unterschiedliche Maschinen-Reihenfolge
+\end{itemize}
+\bigskip
+\textbf{Auftragscharakteristik $\boldsymbol{(\beta)}$:}
+\begin{itemize}
+	\item \textbf{Freigabezeiten (Release dates) $\boldsymbol{(r_j)}$}: Auftrag kann nicht vor diesem Zeitpunkt gestartet werden
+	\item \textbf{Unterbrechungen (Preemptions) $\boldsymbol{(prmp)}$}: Bearbeitung eines Auftrags kann unterbrochen und später fortgesetzt werden
+	\item \textbf{Permutation $\boldsymbol{(prmu)}$}: Job-Reihenfolge auf der ersten Maschine muss beibehalten werden
+	\item \textbf{Rüstzeiten (Setup times) $\boldsymbol{(s_{jk}, s_{jk}^i)}$}:
+	\begin{itemize}
+		\item Bevor mit Auftrag $k$ begonnen werden kann, ist Maschine $i$ durch Umrüstung blockiert
+		\item $s_{jk}$: Rüstzeit ist nur von den aufeinanderfolgenden Jobs $j$ und $k$ abhängig
+		\item $s_{jk}^i$: Rüstzeit ist zusätzlich von Maschine $i$ abhängig
+	\end{itemize}
+\end{itemize}
