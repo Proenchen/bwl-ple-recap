@@ -30,8 +30,7 @@
 	\end{itemize}
 	\item \textbf{Auf was bezieht sich Logistik heute?}
 	\begin{itemize}
-		\item Alle arbeitsteiligen Wirtschaftssysteme, in denen es auf zeit-, kosten- und
-		mengenabhängige Verteilung von Gütern und Dienstleistungen ankommt
+		\item Alle arbeitsteiligen Wirtschaftssysteme, in denen es auf zeit-, kosten- und mengenabhängige Verteilung von Gütern und Dienstleistungen ankommt
 	\end{itemize}
 \end{itemize}
 \bigskip
@@ -43,10 +42,7 @@
 
 \textbf{Supply Chain Management (SCM)}:
 \begin{itemize}
-	\item Koordination und Kollaboration von Stakeholdern entlang
-	der gesamten Supply Chain, d.h. auch über die eigene Organisation hinaus,
-	insbesondere mit Zulieferern, Zwischenhändlern, Service-Dienstleistern und
-	Kunden
+	\item Koordination und Kollaboration von Stakeholdern entlang der gesamten Supply Chain, d.h. auch über die eigene Organisation hinaus, insbesondere mit Zulieferern, Zwischenhändlern, Service-Dienstleistern und Kunden
 	\item Umfasst alle Aktivitäten des Logistik Management sowie Produktionsaktivitäten, Vertrieb, Produktdesign, Finanzen und IT
 \end{itemize}
 \bigskip
@@ -79,4 +75,56 @@
 		\item Daten: detailliert, basieren auf Vorhersagen
 		\item \textbf{Beispiele}: Beschaffungs- und Produktionsentscheidungen, Wahl von Transport- und Versandstrategien, Lagerbestandsplanung
 	\end{itemize}
+	\item \textbf{Operativ – Supply Chain Execution:}
+	\begin{itemize}
+		\item Erstellt zeit- und mengengenaue unmittelbar umsetzbare Vorgaben
+		für die Ausführung der Prozesse
+		\item Planungszeitraum: täglich, wöchentlich
+		\item Daten: sehr konkret, detailliert, bis auf unvorhergesehene Störungen
+		vollständig aus ERP System bekannt
+		\item \textbf{Beispiele}: Scheduling (Produktion), Zuweisung von Aufträgen zu Maschinen, Auftragsverarbeitung, Fahrzeug-Routing, LKW-Beladung
+	\end{itemize}
+\end{itemize}
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{images/scm-ebenen.png}
+	\caption*{Aggregationsebene: Wie detailliert sind die Daten}
+\end{center}
+\end{figure}
+
+\textbf{Logistik vs. SCM}:
+\begin{itemize}
+	\item \textbf{Logistik}: Betrachtung der Material- und Erzeugnisflüsse unter Berücksichtigung von Informations- und Wertströmen \underline{innerhalb der eigenen Organisation}
+	\item \textbf{SCM}: Gesamtes logistisches Wertschöpfungsnetz mit Lieferanten, Produzenten, Händlern, Konsumenten 
+	
+	Koordination und Kollaboration von Stakeholdern entlang der gesamten Supply Chain, auch \underline{über die eigene Organisation hinaus}
+\end{itemize}
+
+\textbf{Operations Research:}
+\begin{itemize}
+	\item Analysiert praxisnahe, komplexe Problemstellungen, um möglichst gute Entscheidungen zu treffen
+	\item Probleme werden mithilfe mathematischer Modelle formuliert und mit mathematischen Lösungsmethoden gelöst
+	\item Anwendbar auf verschiedenste Probleme in Logistik und SCM
+\end{itemize}
+\bigskip
+\textbf{Vorgehen beim Lösen von Problemen mit OR:}
+\begin{itemize}
+	\item Überführe realwirtschaftliches Logistikproblem in abstraktes, logistisches Modell
+	\item Wandle logistisches Modell in OR-Modell (LP/MILP/MIP) um und löse mit bekannten Werkzeugen
+	\item Interpretation der OR-Modell-Lösung und Schlussfolgerung für das reale
+	Problem
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{images/or-workflow.png}
+\end{center}
+\begin{itemize}
+	 \item \textit{Beispiel siehe Logistik VL 1, F27-34}
+	 \item \textit{Rechenbeispiele siehe Logistik Tutblatt 1}
+\end{itemize}
+\bigskip
+\textbf{Wichtige Software für die Logistik:}
+\begin{itemize}
+	\item \textbf{Enterprise Resource Planning Systeme (ERP)} erfassen Daten aller wesentlichen Geschäftsfunktionen (z.B. Buchhaltung, Personalwesen) konsistent und up-to-date und machen diese unternehmensweit verfügbar (z.B. SAP, Oracle)
+	\item Erweiterung zu \textbf{Advanced Planning Systems (APS)} helfen, komplexe Planungsaufgaben im SCM zu erfüllen und rationale Entscheidungen zu unterstützen
+	\item APS nehmen die im ERP-System erhobenen Daten in Modelle entgegen und lösen die so entstandenen Probleme mittels OR-Algorithmen
 \end{itemize}
