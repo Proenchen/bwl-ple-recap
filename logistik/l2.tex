@@ -65,3 +65,56 @@
 		\item $s_{jk}^i$: Rüstzeit ist zusätzlich von Maschine $i$ abhängig
 	\end{itemize}
 \end{itemize}
+\bigskip
+\textbf{Zielfunktion $\boldsymbol{(\gamma)}$:}
+\begin{itemize}
+	\item \textbf{Makespan $\boldsymbol{(C_{max})}$}: Entspricht Gesamtproduktionszeit, also der Zeit, wenn der letzte Job fertiggestellt ist: $C_{max}=\max\limits_{j\in J}\{C_j\}$
+	\item \textbf{Gesamtfertigstellungszeiten (Total completion time) $\boldsymbol{(\sum C_j)}$:} Summe der Fertigstellungszeiten der Jobs
+	\item \textbf{Gewichtete Gesamtfertigstellungszeiten (Total weighted completion time) $\boldsymbol{(\sum w_jC_j)}$:} Summe der gewichteten Fertigstellungszeiten der Jobs
+	\item \textbf{Gesamtverspätung (Total tardiness) $\boldsymbol{(\sum T_j)}$:} Summe der Verspätungszeiten
+	\item \textbf{Anzahl verspäteter Jobs (Number of tardy Jobs) $\boldsymbol{(\sum U_j)}$:} Summe der Einheitsstrafen
+\end{itemize}
+\bigskip
+\textbf{Gantt-Charts:}
+\begin{itemize}
+	\item Visualisierungsmöglichkeit von Scheduling-Lösungen
+	\item Block für die Bearbeitung von Job $j$ auf Maschine $i$ ist auf Höhe von
+	$i$ und Länge des Blocks entspricht Prozesszeit $p_{ij}$
+	\item Innerhalb des Blocks steht die Job-Nummer oder Prozesszeit (problemabhängig)
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{images/gantt.png}
+\end{center}
+
+\subsection{Ein-Maschinen-Probleme}
+\begin{itemize}
+	\item \textbf{Problemstellung}: $n$ Jobs sollen auf einer Maschine in
+	Reihenfolge gebracht werden
+	\item Jeder Schedule kann als Permutation der Jobs $1,\ldots,n$ angesehen
+	werden \\
+	$\rightarrow n!$ verschiedene Schedules
+\end{itemize}
+\bigskip
+\textbf{Minimierung der Fertigstellungszeiten:}
+\begin{itemize}
+	\item Problem $1\mid\mid C_{max}$ ist trivial, da $C_{max}=\sum\limits_{j=1}^{n} p_j$ für jeden Schedule
+	\item Problem $1\mid\mid \sum\limits_{j=1}^{n} C_j$ lässt sich mit \textbf{SPT-Regel} (Shortest Processing Time first) optimal lösen $\rightarrow$ Individuelle Fertigstellungszeitpunkte so gering wie möglich halten
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{images/spt.png}
+	\end{center}
+\end{itemize}
+\bigskip
+\textbf{Minimierung gewichteter Fertigstellungszeiten:}
+\begin{itemize}
+	\item Problem $1\mid\mid \sum\limits_{j=1}^{n} w_jC_j$ lässt sich mit \textbf{WSPT-Regel} (Weighted shortest processing time) optimal lösen
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{images/wspt.png}
+	\end{center}
+	\item Es ergibt sich $S=\{6,2,7,4,1,3,8,5\}$ mit $\sum\limits_{j=1}^{n} w_jC_j(S)=329$
+\end{itemize}
+\bigskip
+\textbf{Minimierung der Anzahl verspäteter Jobs:}
+\begin{itemize}
+	\item Problem $1\mid\mid \sum\limits_{j=1}^{n} U_j$ lässt sich mit \textbf{Moore's Algorithmus} optimal lösen
+	
+\end{itemize}
