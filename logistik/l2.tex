@@ -110,11 +110,37 @@
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{images/wspt.png}
 	\end{center}
-	\item Es ergibt sich $S=\{6,2,7,4,1,3,8,5\}$ mit $\sum\limits_{j=1}^{n} w_jC_j(S)=329$
+	\item Ergebnis: $S=\{6,2,7,4,1,3,8,5\}$ mit $\sum\limits_{j=1}^{n} w_jC_j(S)=329$
 \end{itemize}
 \bigskip
 \textbf{Minimierung der Anzahl verspäteter Jobs:}
 \begin{itemize}
 	\item Problem $1\mid\mid \sum\limits_{j=1}^{n} U_j$ lässt sich mit \textbf{Moore's Algorithmus} optimal lösen
-	
+	\begin{enumerate}
+		\item \textbf{Initialisierung}: Sortiere alle Jobs in aufsteigender Reihenfolge nach Lieferterminen $\rightarrow$ Schedule $S$ und setze $J=\emptyset$
+		\item \textbf{Job-Auswahl}: 
+		\begin{itemize}
+			\item Wenn ein verspäteter Job in $S$ existiert $\rightarrow$ Betrachte ersten verspäteten Job $j'$ in $S$ 
+			\item Sonst: Gehe zu 4.
+		\end{itemize}
+		\item \textbf{Job-Entfernung}: Wähle Job $u$ mit größter Prozesszeit, der vor $j'$ kommt und setze $S\coloneqq S\setminus\{u\}$ und $J\coloneqq J\cup \{u\}$
+		\item \textbf{Terminierung}: Füge Jobs aus $J$ in beliebiger Reihenfolge an $S$
+	\end{enumerate}
+	\smallskip
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/moore.png}
+	\end{center}
+	\item Ergebnis: $S=\{2,3,5,4,7,8,1,6\}$ oder $S=\{2,3,5,4,7,8,6,1\}$ mit $\sum\limits_{j=1}^{n} U_j(S)=2$
 \end{itemize}
+
+\subsection{Flow-Shop-Umgebung}
+\begin{itemize}
+	\item \textbf{Problemstellung}: $n$ Jobs durchlaufen selbe Maschinensequenz mit $m$ Maschinen. Reihenfolge der Jobabarbeitung kann an jeder Maschine variieren
+	\item Unterscheidung nach \textbf{Buffer-Typen}:
+	\begin{itemize}
+		\item \textbf{Unbegrenzter Zwischenspeicher}: Keine Blockierung vorhergehender Maschinen möglich (\textit{im Folgenden angenommen})
+		\item \textbf{Begrenzter Zwischenspeicher}: Blockierung vorhergehender Maschinen möglich, d.h. wenn Produkt auf Maschine 1 fertig ist, dann kann es nicht direkt auf Maschine 2 geschoben werden und blockiert somit Maschine 1
+	\end{itemize}
+\end{itemize}
+\bigskip
+\textbf{Minimierung des Makespan:}
