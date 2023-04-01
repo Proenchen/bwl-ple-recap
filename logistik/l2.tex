@@ -173,3 +173,93 @@
 	\item $F2\mid\mid C_{max}$ lässt sich mit Johnson's Algorithmus in \underline{polynomialer Zeit} lösen
 	\item $Fm\mid\mid C_{max}$ für $m\geq 3$ ist \underline{NP-schwer} $\rightarrow$ Lösung durch Heuristiken
 \end{itemize}
+\bigskip
+\textbf{Johnson's Algorithmus für 3 Maschinen:}
+\begin{itemize}
+	\item Für bestimmte Probleminstanzen von $F3\mid\mid C_{max}$ findet eine modifizierte Form von Johnson's Algorithmus ebenfalls eine optimale Lösung
+	\item \textbf{Voraussetzung}: $\max\limits_{i\in J}\{p_{2i}\}\leq\min\limits_{k\in J}\{p_{1k}\}$ \underline{oder} $\max\limits_{i\in J}\{p_{2i}\}\leq\min\limits_{k\in J}\{p_{3k}\}$ mit $i\neq k$
+	\item \textbf{Vorgehen}: 
+	\begin{enumerate}
+		\item Berechne $p_{1j}^*=p_{1j}+p_{2j}$ und $p_{2j}^*=p_{2j}+p_{3j}$ für alle $j\in J$
+		\item Führe den normalen Johnson Algorithmus für $p_{1j}^*$ und $p_{2j}^*$ durch
+	\end{enumerate}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{images/johnson-modified.png}
+	\end{center}
+	\item Einträge $C_{ij}$ wird nach den Rechenvorschriften für Permutationsschedules (\textit{siehe vorherige Seite}) bestimmt
+\end{itemize}
+\bigskip
+\textbf{Heuristiken:}
+\begin{itemize}
+	\item Verfahren zur Bestimmung eines zulässigen Punktes eines Problems, dessen Wert möglichst nahe am Optimalwert liegen soll, mit akzeptablem Aufwand
+	\item \textbf{Arten von Heuristiken}:
+	\begin{itemize}
+		\item \textbf{Konstruktionsheuristiken}: Finden eines ersten zulässigen Punktes
+		\item \textbf{Verbesserungsheuristiken}: Ausgehend von einem zulässigen Punkt wird nach Verbesserungen gesucht
+		\item Heuristiken zur Bestimmung von Schranken
+	\end{itemize}
+\end{itemize}
+\bigskip
+\textbf{NEH-Heuristik:}
+\begin{enumerate}
+	\item Berechne für jeden Job $j$: $T_j=\sum\limits_{i=1}^{m}p_{ij}$
+	\item Sortiere Jobs in absteigender Reihenfolge ihrer $T_j$ in einer Liste, wenn mehrere Jobs dieselben Werte für $T_j$ haben, sortiere aufsteigend nach Job-IDs
+	\item Nehme die ersten beiden Jobs der Liste und finde die beste Sequenz aus
+	diesen Jobs $\rightarrow$ Berechne Makespan für beide möglichen Sequenzen
+	und wähle Sequenz mit niedrigerem Makespan. Setze $i\coloneqq 3$
+	\item Nehme Job an $i$-te Stelle aus der Liste von Schritt 2. Füge diesen an alle möglichen Positionen der bisher generierten Sequenz ein. Die generierte
+	Sequenz, welche den minimalen Makespan aufweist, wird für den nächsten Schritt
+	berücksichtigt.
+	\item Wenn $i=n \rightarrow \text{Stop}$, sonst $i=i+1$ und gehe zu Schritt 4
+\end{enumerate}
+\textit{Beispiel siehe Übung, Folie 14-18}
+\\
+
+\textbf{MILP für Flow-Shop Maschinenumgebung (allgemein)}:
+\begin{itemize}
+	\item \textbf{Entscheidungsvariablen}:
+	\begin{itemize}
+		\item $x_{jk}^{i}$ : Binärvariable: Angabe, ob $j$ vor $k$ auf $i$ produziert wird
+		\item $C_{ij}$ : Fertigstellungszeitpunkt von $j$ auf Maschine $i$
+	\end{itemize}
+	\item \textbf{Zielfunktion}: $Z \rightarrow \min$ mit $Z=\max\limits_{j=1,\ldots,n}\{C_{mj}\}$
+	\item \textbf{Nebenbedingungen}:
+	\begin{enumerate}
+		\item $C_{i j} \geq C_{(i-1) j}+p_{i j}, \forall i=1, \ldots, m ; j=1, \ldots, n$ (Maschinenreihenfolgensicherstellung)
+		\item $M \cdot x_{j k}^{i}+C_{i j}-C_{i k} \geq p_{i j}, \forall i=1, \ldots, m ; j=1, \ldots, n-1 ; k=j+1, \ldots, n$ (Jobreihenfolge, wenn $k$ vor $j$)
+		\item $M \cdot\left(1-x_{j k}^{i}\right)+C_{i k}-C_{i j} \geq p_{i k}, \forall i=1, \ldots, m ; j=1, \ldots, n-1 ; k=j+1, \ldots, n$ (Jobreihenfolge, wenn $j$ vor $k$)
+		\item $Z \geq C_{m j}, \quad \forall j=1, \ldots, n$ (Definition Makespan $Z$)
+		\item $C_{0 j}=0, \forall j=1, \ldots, n$ (NNB für virtuelle Maschine $0 \rightarrow$ Job $j$ kann erst ab Zeitpunkt 0 auf Maschine 1 produziert werden)
+		\item $x_{j k}^{i} \in\{0 ; 1\}: x_{j k}^{i}=\left\{\begin{array}{l}1, \text { wenn Auftrag } j \text { vor Auftrag } k \text { auf Maschine } i \text{ produziert wird } \\ 0, \text { sonst }\end{array}\right.$
+	\end{enumerate}
+	\item $M$ ausreichend groß wählen $\rightarrow$ Sorgt für Erfüllung der Ungleichungen, wenn $j$ vor $k$ (2.) oder $k$ vor $j$ (3.) bearbeitet wird
+	\item Bei anderer Zielfunktion $\rightarrow$ $Z$ austauschen und 4. eventuell streichen
+\end{itemize}
+\bigskip
+\textbf{MILP für Permutation-Flow-Shop}:
+\begin{itemize}
+	\item \textbf{Entscheidungsvariablen}:
+	\begin{itemize}
+		\item $x_{jk}$ : Binärvariable: Angabe, ob $j$ an Position $k$ (auf allen Maschinen) produziert wird
+		\item $C_{ik}$ : Fertigstellungszeitpunkt des Jobs auf Position $k$ auf Maschine $i$
+	\end{itemize}
+	\item \textbf{Zielfunktion}: $Z \rightarrow \min$ mit $Z=\max\limits_{j=1,\ldots,n}\{C_{mj}\}$
+	\item \textbf{Nebenbedingungen}:
+	\begin{enumerate}
+		\item $\sum\limits_{j=1}^{n} x_{j k}=1, \forall k=1, \ldots, n$ (Jede Position hat einen Job)
+		\item $\sum\limits_{k=1}^{n} x_{j k}=1, \forall j=1, \ldots, n$ (Jeder Job hat eine Position)
+		\item $C_{(i-1) k}+\sum_{j=1}^{n} p_{i j} x_{j k} \leq C_{i k}, \forall i=1, \ldots, m ; k=1, \ldots, n$ (Maschinenreihenfolgensicherstellung)
+		\item $C_{i(k-1)}+\sum_{j=1}^{n} p_{i j} x_{j k} \leq C_{i k}, \forall i=1, \ldots, m ; k=1, \ldots, n$ (Jobreihenfolgensicherstellung)
+		\item $Z \geq C_{m j}, \quad \forall j=1, \ldots, n$ (Definition Makespan $Z$)
+		\item $C_{01}=0$ (NNB für die virtuelle Maschine $0 \rightarrow$ Job auf Position 1 kann erst ab Zeitpunkt 0 auf erster Maschine produziert werden)
+		\item $x_{j k} \in\{0 ; 1\}: x_{j k}=\left\{\begin{array}{l}1, \text { wenn Auftrag } j \text { an Position } k \text { produziert wird } \\ 0, \text { sonst }\end{array}\right.$
+	\end{enumerate}
+	\item Bei anderer Zielfunktion $\rightarrow$ $Z$ austauschen und 5. eventuell streichen
+\end{itemize}
+\bigskip
+\textbf{Flow-Shop-Optimierung durch Solver:}
+\begin{itemize}
+	\item Obige MILPS können durch Solver (z.B. CPLEX) gelöst werden
+	\item Große einfache Probleme $\rightarrow$ Nutze Heuristiken, da diese schneller
+	\item Schwere Probleme $\rightarrow$ Nutze Solver
+\end{itemize}
