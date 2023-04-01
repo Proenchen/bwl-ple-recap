@@ -141,6 +141,35 @@
 		\item \textbf{Unbegrenzter Zwischenspeicher}: Keine Blockierung vorhergehender Maschinen möglich (\textit{im Folgenden angenommen})
 		\item \textbf{Begrenzter Zwischenspeicher}: Blockierung vorhergehender Maschinen möglich, d.h. wenn Produkt auf Maschine 1 fertig ist, dann kann es nicht direkt auf Maschine 2 geschoben werden und blockiert somit Maschine 1
 	\end{itemize}
+	\item Schedule heißt \textbf{Permutationsschedule}, wenn Jobs in gleicher Reihenfolge auf allen Maschinen abgearbeitet werden
 \end{itemize}
-\bigskip
+\pagebreak
 \textbf{Minimierung des Makespan:}
+\begin{itemize}
+	\item Problem $Fm\mid\mid C_{max}$, wobei $m$ die Anzahl der Maschinen ist
+	\item \textbf{Satz}: Für $Fm\mid\mid C_{max}$ existiert für jede Probleminstanz ein optimaler Schedule, bei welchem die Jobsequenz für die ersten zwei Maschinen für die letzten zwei Maschinen gleich ist
+	\item \textbf{Folgerung}: Für $F2\mid\mid C_{max}$ und $F3\mid\mid C_{max}$ existieren optimale Schedules die Permutationsschedules sind
+	\item Für \textbf{Permutationsschedules} gilt:
+	\begin{itemize}
+		\item $C_{i,j_1}=\sum\limits_{l=1}^{i}p_{l,j_1}$ für $i=1,\ldots,m$: Fertigstellungszeitpunkt von Job 1 auf Maschine $i$ ist die Summe der Prozesszeiten von Job 1 auf allen vorherigen Maschinen
+		\item $C_{1,j_k}=\sum\limits_{l=1}^{k}p_{1,j_l}$ für $k=1,\ldots,n$:
+		Fertigstellungszeitpunkt von Job $k$ auf Maschine 1 ist die Summe der Prozesszeiten von allen vorherigen Jobs auf Maschine 1
+		\item $C_{i,j_k}=\max\{C_{i-1,j_k},C_{i,j_{k-1}}\}+p_{i,j_k}$ für $i=2,\ldots,m$ und $k=2,\ldots,n$:\\
+		Erst, wenn Job $k$ auf vorheriger Maschine $i-1$ fertig ist und wenn Job $k-1$ auf Maschine $i$ fertig ist, kann mit Job $k$ auf Maschine $i$ angefangen werden
+	\end{itemize}
+	\item $F2\mid\mid C_{max}$ lässt sich mit \textbf{Johnson's Algorithmus} optimal lösen:
+	\begin{enumerate}
+		\item \textbf{Initialisierung}: Speichere Jobs mit $p_{1,j}\leq p_{2,j}$ in $J_1$ und Jobs mit $p_{1,j}>p_{2,j}$ in $J_2$
+		\item \textbf{Job-Sortierung}: Sortiere Jobs in $J_1$ aufsteigend nach Prozesszeiten auf Maschine 1 und Jobs in $J_2$ absteigend nach Prozesszeiten auf Maschine 2
+		\item \textbf{Terminierung}: Füge $J_2$ an $J_1$
+	\end{enumerate}
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{images/johnson.png}
+	\end{center}
+\end{itemize}
+
+\textbf{Betrachtung der Komplexität}:
+\begin{itemize}
+	\item $F2\mid\mid C_{max}$ lässt sich mit Johnson's Algorithmus in \underline{polynomialer Zeit} lösen
+	\item $Fm\mid\mid C_{max}$ für $m\geq 3$ ist \underline{NP-schwer} $\rightarrow$ Lösung durch Heuristiken
+\end{itemize}
