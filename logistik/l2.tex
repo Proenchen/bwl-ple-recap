@@ -222,7 +222,7 @@
 		\item $x_{jk}^{i}$ : Binärvariable: Angabe, ob $j$ vor $k$ auf $i$ produziert wird
 		\item $C_{ij}$ : Fertigstellungszeitpunkt von $j$ auf Maschine $i$
 	\end{itemize}
-	\item \textbf{Zielfunktion}: $Z \rightarrow \min$ mit $Z=\max\limits_{j=1,\ldots,n}\{C_{mj}\}$
+	\item \textbf{Zielfunktion}: $Z \rightarrow \min$ mit $Z=\max\limits_{j=1,\ldots,n}\{C_{mj}\}$ (Minimierung Makespan)
 	\item \textbf{Nebenbedingungen}:
 	\begin{enumerate}
 		\item $C_{i j} \geq C_{(i-1) j}+p_{i j}, \forall i=1, \ldots, m ; j=1, \ldots, n$ (Maschinenreihenfolgensicherstellung)
@@ -243,13 +243,13 @@
 		\item $x_{jk}$ : Binärvariable: Angabe, ob $j$ an Position $k$ (auf allen Maschinen) produziert wird
 		\item $C_{ik}$ : Fertigstellungszeitpunkt des Jobs auf Position $k$ auf Maschine $i$
 	\end{itemize}
-	\item \textbf{Zielfunktion}: $Z \rightarrow \min$ mit $Z=\max\limits_{j=1,\ldots,n}\{C_{mj}\}$
+	\item \textbf{Zielfunktion}: $Z \rightarrow \min$ mit $Z=\max\limits_{j=1,\ldots,n}\{C_{mj}\}$ (Minimierung Makespan)
 	\item \textbf{Nebenbedingungen}:
 	\begin{enumerate}
 		\item $\sum\limits_{j=1}^{n} x_{j k}=1, \forall k=1, \ldots, n$ (Jede Position hat einen Job)
 		\item $\sum\limits_{k=1}^{n} x_{j k}=1, \forall j=1, \ldots, n$ (Jeder Job hat eine Position)
-		\item $C_{(i-1) k}+\sum_{j=1}^{n} p_{i j} x_{j k} \leq C_{i k}, \forall i=1, \ldots, m ; k=1, \ldots, n$ (Maschinenreihenfolgensicherstellung)
-		\item $C_{i(k-1)}+\sum_{j=1}^{n} p_{i j} x_{j k} \leq C_{i k}, \forall i=1, \ldots, m ; k=1, \ldots, n$ (Jobreihenfolgensicherstellung)
+		\item $C_{(i-1) k}+\sum\limits_{j=1}^{n} p_{i j} x_{j k} \leq C_{i k}, \forall i=1, \ldots, m ; k=1, \ldots, n$ (Maschinenreihenfolgensicherstellung)
+		\item $C_{i(k-1)}+\sum\limits_{j=1}^{n} p_{i j} x_{j k} \leq C_{i k}, \forall i=1, \ldots, m ; k=1, \ldots, n$ (Jobreihenfolgensicherstellung)
 		\item $Z \geq C_{m j}, \quad \forall j=1, \ldots, n$ (Definition Makespan $Z$)
 		\item $C_{01}=0$ (NNB für die virtuelle Maschine $0 \rightarrow$ Job auf Position 1 kann erst ab Zeitpunkt 0 auf erster Maschine produziert werden)
 		\item $x_{j k} \in\{0 ; 1\}: x_{j k}=\left\{\begin{array}{l}1, \text { wenn Auftrag } j \text { an Position } k \text { produziert wird } \\ 0, \text { sonst }\end{array}\right.$
