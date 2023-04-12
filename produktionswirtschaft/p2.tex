@@ -213,3 +213,107 @@ $\rightarrow$ Berücksichtigung stochastischer Periodenbedarfe durch einen
 Sicherheitsbestand und in \textbf{Lagerhaltungspolitiken}
 
 \subsection{Bestandsplanung}
+
+\textbf{Wesentliche Begriffe:}
+\begin{itemize}
+	\item \textbf{Nettobestand}: Im Lager physisch befindlicher Bestand an Ware
+	\item \textbf{Fehlbestand/-menge}: Lagerbestand, der wegen mangelnder Lieferfähigkeit nicht ausgeliefert werden konnte
+	\item \textbf{Bestellbestand/-menge}: Bestellmengen, die noch nicht physisch im Lager sind (z.B. wegen Transport), aber bereits dem Lager mitgeteilt wurden 
+	\item \textbf{Disponibler Bestand}: Nettobestand $+$ Bestellbestand $-$ Fehlbestand
+\end{itemize}
+\bigskip
+\textbf{Lagerhaltungspolitik:}
+\begin{center}
+	\includegraphics[width=0.4\textwidth]{images/lagerhaltungspolitik.png}
+\end{center}
+Politiken für Bestellmenge und Bestellzeitpunkt können miteinander kombiniert werden $\rightarrow$ (s,q)-Politik, (s,S)-Politik, (r,q)-Politik, (r,S)-Politik
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{images/sq-rs.png}
+\end{center}
+\begin{itemize}
+	\item \textbf{(s,q)-Politik}: Bestellpunkt $s$ muss ausreichend sein, um die Nachfragemenge während der Wiederbeschaffungszeit zu decken
+	$\rightarrow$ Geringerer Sicherheitsabstand nötig, Keine schwankenden Bestellmengen 
+	\item \textbf{(r,S)-Politik}: Bestellniveau $S$ muss ausreichend sein, um Bedarf bis zur nächsten Bestellung zu decken $\rightarrow$ Geringer Überwachungsaufwand, Beschaffungstermine unterschiedlicher Produkte vom selben Lieferanten können aufeinander abgestimmt werden
+\end{itemize}
+
+\textbf{Sicherheitsbestand:} Erwarteter Bestand, der zum Zeitpunkt des Eingangs neuer Waren planmäßig noch im Lager vorhanden ist
+\begin{center}
+	\includegraphics[width=0.4\textwidth]{images/sicherheitsbestand.png}
+\end{center}
+
+\textbf{Lager-Servicegrade:}
+\begin{itemize}
+	\item $\alpha$-Servicegrad: Wahrscheinlichkeit, dass keine Fehlmengen auftreten $\rightarrow$ Keine Aussagen über Höhe der Fehlmengen
+	\item $\beta$-Servicegrad: $\beta=\cfrac{\text{sofort erfüllbare Nachfragemenge}}{\text{Nachfrage in der Periode}}$
+\end{itemize}
+\bigskip
+\textbf{Bullwhip-Effekt:} Phänomen, dass sich Nachfrageschwankungen über Lieferketten hinweg verstärken $\rightarrow$ \textbf{Auswirkungen}:
+\begin{itemize}
+	\item Ungleichmäßige Kapazitätsauslastungen entlang der Lieferketten
+	\item Hohe Lagerbestände zur Absicherung gegen Schwankungen
+	\item Geringere Servicegrade und Kundenzufriedenheiten
+\end{itemize}
+
+\textbf{Gegenmaßnahmen}:
+\begin{itemize}
+	\item Verbesserung des Informationsflusses in der SC
+	\item Kommunikation von möglichen Preisänderungen
+	\item Reduzierung der Wiederbeschaffungszeit
+	\item Reduzierung der Supply Chain Komplexität
+\end{itemize}
+\bigskip
+\textbf{Ripple Effekt:} Dynamik, die bei einer disruptiven Störung (z.B. Naturkatastrophen) an einer Stelle der SC bei den nachgelagerten Wertschöpfungspartnern auftritt $\rightarrow$ \textbf{Gegenmaßnahmen} \textit{s. Produktion VL 3, F31}
+
+\textbf{Vergleich Bullwhip und Ripple Effekt:}
+\begin{center}
+	\includegraphics[width=\textwidth]{images/b-r-vergleich.png}
+\end{center}
+\bigskip
+\textbf{Lieferantenmanagement:} \textbf{Ziel}: Stärkung der Wettbewerbsposition des Unternehmens durch eine optimale Zusammenarbeit Lieferanten
+\begin{enumerate}
+	\item \textbf{Lieferantenstrategie}: Auswahl der richtigen Lieferanten, Eigen- oder Fremdfertigung?, Wahl der Werkzeuge im Lieferantenmanagement$\ldots$
+	\item \textbf{Lieferantenauswahl}: Auswahl der Lieferanten auf Basis der Lieferantenstrategie, unternehmensinterne und -externe Faktoren (\textit{VL 3, F38})
+	\begin{center}
+		\includegraphics[width=0.74\textwidth]{images/lieferant.png}
+	\end{center}
+	\item \textbf{Lieferantenbewertung}: 
+	\begin{itemize}
+		\item Auswahl Bewertungsaufwand: 
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{images/bewertungsaufwand.png}
+		\end{center}
+		\item Bewertungsfaktoren z.B. Flexibilität, Standort, Kapazität
+		\item Methodenauswahl:
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{images/methods.png}
+		\end{center}
+		\textbf{Nutzwertanalyse} gehört zu \textbf{Multi-Attribute Decision Making} innerhalb der \textbf{Multi-Kriterien-Entscheidungsfindung}
+	\end{itemize}
+\end{enumerate}
+\bigskip
+\textbf{Nutzwertanalyse:} Systematisches Treffen von Entscheidungen bei überschneidungsfreien Handlungsalternativen. \textbf{Vorgehen}:
+\begin{enumerate}
+	\item Benennung des Entscheidungsproblems
+	\item Aufstellen des Zielsystems/Festlegung der Bewertungskriterien
+	\item Gewichten der Ziele und Kriterien
+	\item Transformation der Bewertungsdimensionen in dimensionslose Skala mit gleichem Umfang
+	\item Aufstellen einer Bewertungsmatrix und Ausfüllen
+	\item Berechnung der Nutzenwerte der Alternativen 
+\end{enumerate}
+
+\textit{Beispiele: VL 2, F49-55 und Tut 2}
+
+\pagebreak
+\textbf{Vorteile Nutzwertanalyse}: 
+\begin{itemize}
+	\item Methode ist einfach und verständlich
+	\item Komplexe Entscheidungen werden überschaubarer
+	\item Entscheidungsfindung ist transparent und systematisch
+\end{itemize} 
+
+\textbf{Nachteile Nutzwertanalyse}:
+\begin{itemize}
+	\item Analyse ist zeit- und arbeitsintensiv
+	\item Zielsysteme müssen vollständig sein
+	\item Fachwissen wird vorausgesetzt
+\end{itemize}
